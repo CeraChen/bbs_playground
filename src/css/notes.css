@@ -1,0 +1,95 @@
+.toggle:hover {
+    cursor: pointer;
+    /* font-weight: bold; */
+    color: rgb(85, 218, 173);
+}
+
+table {
+    width: 100%;
+}
+
+.member-name-header {
+    width: 20%;
+}
+.update-time-header {
+    width: 15%;
+}
+.toggle-button-header {
+    width: 15%;
+}
+
+.member-name {
+    width: 20%;
+}
+.update-time {
+    width: 15%;
+}
+.toggle-button {
+    width: 15%;
+}
+
+
+
+/* .note-content-row {
+    justify-content: center;
+} */
+.note-content {
+    padding-left: 2%;
+    padding-right: 10%;
+}
+.raw-html {
+    padding-right: 25px;
+}
+.note-content-container {
+    width: 80%;
+    height: 500px;
+    overflow: auto; /* 让内容溢出容器时显示滚动条 */
+    text-align: left;
+    font-size: smaller;
+}
+.short-msg-container {
+    width: 80%;
+    height: 100px;
+    text-align: left;
+    font-size: smaller;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* 背景 */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 5px;
+}
+
+/* 滑块 */
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 5px;
+}
+
+/* 滑块悬停状态 */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.note-header {
+    font-weight: bold;
+}
+
+
+.note-table {
+    padding-left: 10%;
+    margin-top: 20px;
+    /* display: inline-block;
+    text-align: left; */
+}
+
+.title {    
+    padding-left: 10%;
+    margin-top: 20px;
+    font-weight: bold;
+    font-size: 28px;
+}
