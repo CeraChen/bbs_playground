@@ -183,6 +183,7 @@ function ListPage( ) {
     const reviewer_items = reviewer_users.map((id) => {
         return <div className="reviewer-item" onClick={() => {
             setIdentity(id);
+            setSwitchFolded(true);
         }}>{id}</div>
     });
 
