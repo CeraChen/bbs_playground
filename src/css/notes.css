@@ -164,6 +164,50 @@ table {
     font-size: 28px;
 }
 
+.reviewer-setting {  
+    padding-left: 10%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    /* font-weight: bold; */
+    /* font-size: 28px; */
+}
+
+#reviewer-role-container {
+    width: 90px;
+    margin-left: 175px;
+    text-align: center;
+}
+
+.reviewer-item {
+    margin-top: 3px;
+}
+.reviewer-item:hover {
+    color: rgb(45, 165, 125);
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#switch-button {
+    color: rgb(88, 88, 88);
+    margin: 3px;
+    font-size: 10px;
+    /* padding-top: 30px; */
+}
+#switch-button:hover {
+    color: rgb(19, 141, 100);
+    cursor: pointer;
+}
+
+#switch-guidance {
+    display: none;
+    color: rgb(19, 141, 100);
+    margin-left: 3px;
+    font-style: italic;
+}
+#switch-button:hover + #switch-guidance {
+    display: inline;
+}
+
 #comment-result {
     font-style: italic;
 }

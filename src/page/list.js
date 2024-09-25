@@ -6,12 +6,9 @@ import api_config from '../config/api_config.json';
 
 
 
-const IDENTITY = "Sicheng";
-const USER_NAME = (IDENTITY in api_config)? api_config[IDENTITY]["USER_NAME"]:"Invalid reviewer";
 
 
-
-function NoteBlock({ name, update, content, topic_id, isExpanded, onToggle, isShort, rowRef }) {
+function NoteBlock({ name, update, content, topic_id, isExpanded, onToggle, isShort, rowRef, IDENTITY, USER_NAME }) {
     
     const onClicktoReply = (topicId) => {
         const message = document.getElementById("comment-input").value;
@@ -145,6 +142,26 @@ function ListPage( ) {
     //     handleExpandedChange();
     // }, [expandedIndex]); 
 
+
+
+
+    const [IDENTITY, setIdentity] = useState("VisBot");
+    const [USER_NAME, setUserName] = useState((IDENTITY in api_config)? api_config[IDENTITY]["USER_NAME"]:"Invalid reviewer");
+    useEffect(() => {
+        setUserName((IDENTITY in api_config)? api_config[IDENTITY]["USER_NAME"]:"Invalid reviewer");
+    }, [IDENTITY]);
+
+    const [switch_folded, setSwitchFolded] = useState(true);
+    useEffect(() => {
+        const elem = document.getElementById("reviewer-role-container");
+        if (switch_folded) {
+            elem.style.visibility = "hidden";
+        }
+        else {
+            elem.style.visibility = "visible";
+        }
+    }, [switch_folded]);
+
     var mList = note_list.map((dict, index) => {
         return <NoteBlock 
                 name = {dict["name"]} 
@@ -155,13 +172,34 @@ function ListPage( ) {
 
                 isExpanded = {index === expandedIndex}
                 onToggle = {() => handleToggle(index)}
-                rowRef = {rowRef}>
+                rowRef = {rowRef}
+                
+                IDENTITY = {IDENTITY}
+                USER_NAME = {USER_NAME}>
                 </NoteBlock>
     });
+
+    const reviewer_users = Object.keys(api_config);
+    const reviewer_items = reviewer_users.map((id) => {
+        return <div className="reviewer-item" onClick={() => {
+            setIdentity(id);
+        }}>{id}</div>
+    });
+
+    const onSwitchBtnClick = () => {
+        setSwitchFolded(!switch_folded);
+    };
 
     return (
         <div className="main">
             <div className="title">Latest Reading Notes Overview</div>
+            <div className="reviewer-setting">
+                <span className="guidance"><span className="emoji">&#x1F469;&#x1F3FB;&#x200D;&#x1F4BB;</span>You review as user: </span><span className="bold" id="current-reviewer">{IDENTITY}</span> (<span className="bold">{(IDENTITY == "VisBot")? "Default":USER_NAME}</span>) 
+                <span id="switch-button" onClick={onSwitchBtnClick}>{(switch_folded)? "▼":"▲"}</span><span id="switch-guidance">{(switch_folded)? "switch":"fold"}</span>
+                <div id="reviewer-role-container">
+                    {!switch_folded && reviewer_items}
+                </div>
+            </div>
             <table className="note-table" id="table">
                 <thead> 
                 <tr className="note-header">
