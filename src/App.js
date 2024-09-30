@@ -13,7 +13,7 @@ function App() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                fetch("http://localhost:5000/api/load", {
+                fetch("http://localhost:5001/api/load", {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

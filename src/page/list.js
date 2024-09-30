@@ -20,7 +20,7 @@ function NoteBlock({ name, update, content, topic_id, isExpanded, onToggle, isSh
             user: IDENTITY,
         };
 
-        fetch("http://localhost:5000/api/send", {
+        fetch("http://localhost:5001/api/send", {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
