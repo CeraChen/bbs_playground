@@ -1,7 +1,7 @@
 import { React, useState, useRef, useEffect  } from "react";
 import "../css/notes.css";
 
-import reading_notes_json from '../json/2024_09_24_reading_notes.json';
+import defaultJson from '../json/default.json';
 import api_config from '../config/api_config.json';
 
 
@@ -93,7 +93,10 @@ function NoteBlock({ name, update, content, topic_id, isExpanded, onToggle, isSh
 
 const Json2List = (mJson) => {
     var result_list = [];
-    // console.log(mJson);
+    console.log(mJson);
+    if (mJson == null) {
+        mJson = defaultJson;
+    }
     for (var i=1; i<100; i ++) // assume there are less than 100 members
     {
         if(i in mJson) {
@@ -108,8 +111,29 @@ const Json2List = (mJson) => {
 
 
 
-function ListPage( ) {
-    const note_list = Json2List(reading_notes_json);
+function ListPage( {noteJson} ) {
+    // const [noteJson, loadData] = useState(null);
+
+    // useEffect(() => {
+    //     console.log("to fetch");
+    //     fetch("http://localhost:5000/api/load", {
+    //         method: 'POST',
+    //         headers: {
+    //           'Content-Type': 'application/json',
+    //         }
+    //     })
+    //     .then(response => response.json())
+    //     .then(data => {
+    //         console.log("get data");
+    //         console.log(data);
+    //         loadData(data);
+    //     })
+    //     .catch(error => {
+    //         loadData(defaultJson);
+    //     });
+    // }, []); // Passing an empty dependency array ensures this effect runs only once
+
+    const note_list = Json2List(noteJson);
 
     const [expandedIndex, setExpandedIndex] = useState(null);
     const rowRef = useRef(null);
@@ -165,7 +189,7 @@ function ListPage( ) {
     var mList = note_list.map((dict, index) => {
         return <NoteBlock 
                 name = {dict["name"]} 
-                update = {dict["update"].substring(5)} 
+                update = {dict["update"]} 
                 content = {dict["content"]}
                 isShort = {dict["content"].length < 200}
                 topic_id = {dict["topic_id"]}
