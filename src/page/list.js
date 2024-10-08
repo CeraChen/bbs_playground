@@ -191,7 +191,7 @@ function ListPage( {noteJson} ) {
                 name = {dict["name"]} 
                 update = {dict["update"]} 
                 content = {dict["content"]}
-                isShort = {dict["content"].length < 200}
+                isShort = {dict["content"].length < 250}
                 topic_id = {dict["topic_id"]}
 
                 isExpanded = {index === expandedIndex}
